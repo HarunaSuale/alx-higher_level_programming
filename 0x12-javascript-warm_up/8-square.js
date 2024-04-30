@@ -1,11 +1,20 @@
 #!/usr/bin/node
-const size = Math.floor(Number(process.argv[2]));
-if (isNaN(size)) {
-  console.log('Missing size');
-} else {
-  for (let r = 0; r < size; r++) {
-    let row = '';
-    for (let c = 0; c < size; c++) row += 'X';
-    console.log(row);
+
+const argSquare = process.argv;
+const number = parseInt(argSquare[2], 10);
+
+if (argSquare[2]) {
+  if (number) {
+    for (let i = 0; i < number; i++) {
+      let square = '';
+      for (let j = 0; j < number; j++) {
+        square += 'X';
+      }
+      console.log(square);
+    }
+  } else {
+    console.log('Missing size');
   }
+} else {
+  console.log('Missing size');
 }

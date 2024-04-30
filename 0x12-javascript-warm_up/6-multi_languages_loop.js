@@ -1,4 +1,7 @@
 #!/usr/bin/node
-for (const line of ['C is fun', 'Python is cool', 'JavaScript is amazing']) {
-  console.log(line);
+
+const langsArray = ['C is fun', 'Python is cool', 'JavaScript is amazing'];
+
+for (let i = 0; i < langsArray.length; i++) {
+  console.log(langsArray[i]);
 }
