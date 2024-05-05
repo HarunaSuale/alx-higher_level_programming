@@ -1,20 +1,32 @@
 #!/usr/bin/python3
+
 """
-Script that adds all arguments to a Python list, and then saves them to a file
+Module to add all arguments to a Python list
+and save them to a file.
+You must use your function save_to_json_file from 5-save_to_json_file.py
+You must use your function load_from_json_file from 6-load_from_json_file.py
+The list must be saved as a JSON representation in a file named add_item.json
+If the file doesn’t exist, it should be created
+You don’t need to manage file permissions / exceptions.
 """
 
-from sys import argv
-save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
-load_from_json_file = __import__("6-load_from_json_file").load_from_json_file
 
-filename = "add_item.json"
+import json
+import sys
+
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
+
+arg_check = len(sys.argv)  # to check number of cmd line args
 
 try:
-    json_list = load_from_json_file(filename)
+    # load exixting data from add-item.json
+    my_list = load_from_json_file('add_item.json')
 except FileNotFoundError:
-    json_list = []
+    my_list = []  # initialize empty list if it doesn't exist
 
-for arg in argv[1:]:
-    json_list.append(arg)
-
-save_to_json_file(json_list, filename)
+for x in range(1, arg_check):
+    # append args to my_list
+    my_list.append(sys.argv[x])
+# update my_list with data from add-item.json
+save_to_json_file(my_list, 'add_item.json')
